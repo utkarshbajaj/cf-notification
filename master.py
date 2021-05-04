@@ -7,5 +7,5 @@ data = response.json()
 print(data["status"])
 
 for user in data["result"]:
-    if(user["handle"] == "lukesfather" or user["handle"] == "MananDahiya"):
+    if(user["handle"] == "lukesfather"):
         print(user["rank"])
