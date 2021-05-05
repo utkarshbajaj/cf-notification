@@ -22,11 +22,6 @@ class SendMail:
         new_rating = contestant_info['newRating']
         name = user_info['name']
 
-        message = """\
-        Subject: Hi there
-
-        This message is sent from Python."""
-
         message = 'Hello ' + name + '! your new rating is ' + str(new_rating);
 
         print(message)
