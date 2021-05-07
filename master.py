@@ -45,7 +45,7 @@ def send_updates():
 
             if(data['status'] == "FAILED"):
                 print("Trying again!")
-                time.sleep(5)
+                time.sleep(300)
                 continue
             elif(data['status'] == 'OK'):
                 break
@@ -57,8 +57,8 @@ def send_updates():
         for contestant in data['result']:
             for user in userdata['users']:
                 if(contestant['handle'] == user['name']):
-                    # mailclient.sendto(user, contestant)
-                    print("Username: ", contestant['handle'], " New Rating: ", contestant['newRating'])
+                    mailclient.sendto(user, contestant)
+                    # print("Username: ", contestant['handle'], " New Rating: ", contestant['newRating'])
 
         break
 
