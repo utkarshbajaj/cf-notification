@@ -20,7 +20,7 @@ def contest_finder():
                 list.append(contest['id'])
 
         if(len(list) == 0):
-            time.sleep(7200)
+            time.sleep(3600)
             continue
 
         list.sort()
