@@ -3,6 +3,10 @@ import smtplib
 import time
 import json
 
+import firebase_admin
+from firebase_admin import credentials
+from firebase_admin import firestore
+
 from contest_list import contest_finder
 
 from credentials import sender_email, passwd
@@ -20,9 +24,9 @@ class SendMail:
 
     def sendto(self, user_info, contestant_info):
         '''Send mail to the participant'''
-        rec_email = user_info['email']
+        rec_email = user_info['useremail']
         new_rating = contestant_info['newRating']
-        name = user_info['name']
+        name = user_info['username']
 
         message = 'Hello ' + name + '! your new rating is ' + str(new_rating);
 
@@ -33,8 +37,8 @@ def send_updates():
 
     while(True):
 
-        contestId = contest_finder()
-        # contestId = 1506
+        # contestId = contest_finder()
+        contestId = 1506
 
         print("The contest I got is " + str(contestId))
         url = 'https://codeforces.com/api/contest.ratingChanges?contestId=' + str(contestId)
@@ -52,13 +56,17 @@ def send_updates():
 
         mailclient = SendMail()
 
-        userdata = json.loads(people_data)
+        cred = credentials.Certificate("serviceAccountKey.json")
+        firebase_admin.initialize_app(cred)
+        db = firestore.client()
+
+        result = db.collection('users').get()
 
         for contestant in data['result']:
-            for user in userdata['users']:
-                if(contestant['handle'] == user['name']):
-                    mailclient.sendto(user, contestant)
-                    # print("Username: ", contestant['handle'], " New Rating: ", contestant['newRating'])
+            for user in result:
+                if user.to_dict()['userhandle'] == contestant['handle']:
+                    # print(user.to_dict())
+                    mailclient.sendto(user.to_dict(), contestant)
 
         break
 
