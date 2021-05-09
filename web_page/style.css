@@ -3,7 +3,8 @@ body{
 	padding: 0;
 	font-family: montserrat;
 	/*background-image: linear-gradient(120deg,#2980b9,#8e44ad);*/
-	background-image: url("https://www.droptica.com/sites/droptica.com/files/media/image/dark%20background.jpg");
+	/*background-image: url("https://www.droptica.com/sites/droptica.com/files/media/image/dark%20background.jpg");*/
+	background-color: black;
 	height: 100vh;
 	overflow: hidden;
 }

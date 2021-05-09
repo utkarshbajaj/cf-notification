@@ -1,7 +1,7 @@
 {
   "name": "cf-notification",
   "version": "1.0.0",
-  "description": "python script used to send rating updates to email",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "deploy": "gh-pages -d web_page"
