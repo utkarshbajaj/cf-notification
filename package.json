@@ -1,0 +1,16 @@
+{
+  "name": "cf-notification",
+  "version": "1.0.0",
+  "description": "python script used to send rating updates to email",
+  "main": "index.js",
+  "scripts": {
+    "deploy": "gh-pages -d web_page"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "homepage": "https://utkarshbajaj.github.io/cfrankingupdate",
+  "dependencies": {
+    "gh-pages": "^3.1.0"
+  }
+}

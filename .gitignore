@@ -4,3 +4,4 @@ cfnotify
 serviceAccountKey.json
 passwd.js
 .pyc
+node_modules
