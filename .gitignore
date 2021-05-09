@@ -2,3 +2,5 @@
 credentials.py
 cfnotify
 serviceAccountKey.json
+passwd.js
+.pyc

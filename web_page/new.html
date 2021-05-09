@@ -1,19 +1,40 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Register</title>
+    <title>Register for Codeforces Ranking Updates!</title>
     <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-firestore.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
 <body>
 
-    Name <input id = "namebox" type="text"></input> <br><br>
-    Handle <input id = "handlebox" type="text"></input> <br><br>
-    Email <input id = "emailbox" type="text"></input> <br><br>
+  <div class ="center">
+    <h1>Register</h1>
 
-    <button id = "insertbutton">Insert</button>
+    <form id = "frm1">
+        <div class="txt_field">
+            <input type="text" required>
+            <span></span>
+            <label>Name</label>
+        </div>
+        <div class="txt_field">
+            <input type="text" required>
+            <span></span>
+            <label>Codeforces Handle</label>
+        </div>
+        <div class="txt_field">
+            <input type="text" required>
+            <span></span>
+            <label>Email ID</label>
+        </div>
+        <input type="button" onclick="myFunction()" value="Submit">
+        <div class ="info_link">
+            Learn more about Codeforces Ranking Updates <a href="#">Here</a>
+        </div>
+    </form>
 
+    <script src="./passwd.js"></script>
     <script src="./functions.js"></script>
 </body>
 </html>
