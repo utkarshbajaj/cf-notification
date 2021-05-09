@@ -25,6 +25,7 @@ function myFunction() {
 		useremail: emailToSave
 	}).then(function() {
 		console.log("Status saved!");
+		alert("Saved successfully!");
 	}).catch(function(error) {
 		console.log("Got an error: ", error)
 	});
