@@ -19,19 +19,21 @@ def contest_finder():
         for contest in data['result']:
             if contest["phase"] == "FINISHED":
                 break
+
             if(contest["durationSeconds"] < 12500 and abs(contest['relativeTimeSeconds']) < 2 * oneday):
-                list.append(contest['id'])
+                list.append(contest)
 
         if(len(list) == 0):
             print("Sleeping for one day")
             time.sleep(oneday)
             continue
 
-        list.sort()
+        list.sort(key = lambda x: x['startTimeSeconds'])
 
-        # print("Contest for this time is " + str(list[0]))
+        # for contest in list:
+        #     print(contest)
 
-        return list[0]
+        return list[0]['id']
 
 if(__name__ == "__main__"):
-    contest_finder()
+    ans = contest_finder()
