@@ -50,8 +50,8 @@ def send_updates():
 
     while(True):
 
-        contestId = contest_finder()
-        # contestId = 1506
+        # contestId = contest_finder()
+        contestId = 1525
 
         print("The contest I got is " + str(contestId))
         url = 'https://codeforces.com/api/contest.ratingChanges?contestId=' + str(contestId)
@@ -70,7 +70,7 @@ def send_updates():
             if elapsed > 3 * oneday:
                 break
 
-            if(data['status'] == "FAILED"):
+            if(data['status'] == "FAILED" or len(data['result']) == 0):
                 print("Trying again!")
                 time.sleep(600)
                 continue
