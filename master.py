@@ -7,7 +7,6 @@ import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import firestore
 
-from contest_list import contest_finder
 from credentials import sender_email, passwd
 
 class SendMail:
@@ -15,10 +14,17 @@ class SendMail:
 
     def __init__(self):
         """Connect to the smtp server for gmail"""
-        self.server.starttls()
-        self.server.login(sender_email, passwd)
 
-        print("Login success")
+        try:
+            self.server.starttls()
+            self.server.login(sender_email, passwd)
+
+            print("Login success")
+
+        except:
+            print("Was already logged in")
+
+
 
     def sendto(self, user_info, contestant_info):
         '''Send mail to the participant'''
@@ -40,50 +46,21 @@ class SendMail:
         self.server.quit()
         print("Server quit done")
 
-def send_updates():
 
-    oneday = 86400
+class SendUpdates:
 
-    cred = credentials.Certificate("serviceAccountKey.json")
-    firebase_admin.initialize_app(cred)
-    mailclient = SendMail()
+    def sendto(self, url):
 
-    while(True):
+        cred = credentials.Certificate("serviceAccountKey.json")
+        firebase_admin.initialize_app(cred)
 
-        # contestId = contest_finder()
-        contestId = 1525
-
-        print("The contest I got is " + str(contestId))
-        url = 'https://codeforces.com/api/contest.ratingChanges?contestId=' + str(contestId)
-
-        start = time.time()
-
-        while True:
-            response = requests.get(url)
-            data = response.json()
-
-            end = time.time()
-            elapsed = end - start
-
-            # print(elapsed)
-
-            if elapsed > 3 * oneday:
-                break
-
-            if(data['status'] == "FAILED" or len(data['result']) == 0):
-                print("Trying again!")
-                time.sleep(600)
-                continue
-            elif(data['status'] == 'OK'):
-                break
-
-        if elapsed > 3 * oneday:
-            print("ERROR! Contest was faulty")
-            continue
+        mailclient = SendMail()
 
         db = firestore.client()
-
         result = db.collection('users').get()
+
+        response = requests.get(url)
+        data = response.json()
 
         for contestant in data['result']:
             for user in result:
@@ -91,8 +68,4 @@ def send_updates():
                     # print(user.to_dict())
                     mailclient.sendto(user.to_dict(), contestant)
 
-        # break
-        # uncomment above line to make it run for only for next contest
-
-if __name__ == "__main__":
-    send_updates()
+        firebase_admin.delete_app(firebase_admin.get_app(name='[DEFAULT]'))
