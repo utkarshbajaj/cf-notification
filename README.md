@@ -4,3 +4,5 @@ A python script that mails the rating update to you, when it is published, for t
 Google Firebase (Firestore) integrated to get, store details and retrieve when needed.<br><br>
 Python script deployed on Amazon Web Services EC2 instance (linux).<br><br>
 User input taken through website deployed on GitHub pages. Link: https://utkarshbajaj.github.io/cf-notification/
+
+![alt text](https://drive.google.com/file/d/16xZp_7JL7rgeMdC5lse6v2m9hUdLJpdX/view?usp=sharing)
