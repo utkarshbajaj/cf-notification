@@ -5,4 +5,4 @@ Google Firebase (Firestore) integrated to get, store details and retrieve when n
 Python script deployed on Amazon Web Services EC2 instance (linux).<br><br>
 User input taken through website deployed on GitHub pages. Link: https://utkarshbajaj.github.io/cf-notification/
 
-![alt text](https://drive.google.com/file/d/16xZp_7JL7rgeMdC5lse6v2m9hUdLJpdX/view?usp=sharing)
+![Screenshot 2021-07-25 at 5 00 58 PM](https://user-images.githubusercontent.com/44445191/126900150-6175365a-e6e6-45d4-af4a-c4932bd00d22.png)
