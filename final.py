@@ -12,38 +12,40 @@ def contest_finder():
     url = "https://codeforces.com/api/contest.list?gym=false"
 
     while(True):
-        response = requests.get(url)
-
-        data = response.json()
-
-        list = []
-
-        for contest in data['result']:
-            if contest["phase"] == "FINISHED":
-                break
-
-            if(contest["durationSeconds"] < 12500 and abs(contest['relativeTimeSeconds']) < 2 * oneday):
-                list.append(contest)
-
-        if(len(list) == 0):
-            print("Sleeping for one day")
-            time.sleep(oneday)
-            continue
-
-        list.sort(key = lambda x: x['startTimeSeconds'])
-
-        for contest in list:
-            print(contest)
-
-        contestId = list[0]['id'];
-        # contestId = 1525
+        # response = requests.get(url)
+        #
+        # data = response.json()
+        #
+        # list = []
+        #
+        # for contest in data['result']:
+        #     if contest["phase"] == "FINISHED":
+        #         break
+        #
+        #     if(contest["durationSeconds"] < 12500 and abs(contest['relativeTimeSeconds']) < 2 * oneday):
+        #         list.append(contest)
+        #
+        # if(len(list) == 0)6
+        #     print("Sleeping for one day")
+        #     time.sleep(oneday)
+        #     continue
+        #
+        # list.sort(key = lambda x: x['startTimeSeconds'])
+        #
+        # for contest in list:
+        #     print(contest)
+        #
+        # contestId = list[0]['id'];
+        contestId = 1526
         start = time.time();
 
         cont_url = 'https://codeforces.com/api/contest.ratingChanges?contestId=' + str(contestId)
 
         while True:
-            response = requests.get(url)
+            response = requests.get(cont_url)
             data = response.json()
+
+            # print(data)
 
             end = time.time()
             elapsed = end - start
@@ -72,6 +74,7 @@ def contest_finder():
 
         print("Going to next contest now!")
         time.sleep(10);
+        break
 
 
 
@@ -79,4 +82,4 @@ def contest_finder():
 
 
 if(__name__ == "__main__"):
-    ans = contest_finder()
+    contest_finder()
